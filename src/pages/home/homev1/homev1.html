@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> Market </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showPage('AddPage')">
+        <ion-icon item-end name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="card-background-page">
+  <div class="top-slide">
+    <div class="slide-item" style="background-image: url(assets/img/misc/e-commerce-platforms.png)">
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let item of pages; let i = index" col-4 col-sm-4 col-md-6 col-lg-4 col-xl-2 text-center>
+          <button (click)="showList(item)" >
+            <ion-icon color="primary" name="{{ item.icon }}"></ion-icon> <br> {{ item.title }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col align-self-center text-center>
+        <button (click)="showAll()" ion-button color="primary" clear small icon-end>
+          See all
+          <ion-icon name='arrow-dropright'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

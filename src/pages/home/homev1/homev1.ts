@@ -7,7 +7,6 @@ import { NavController, IonicPage, Slides } from 'ionic-angular';
   templateUrl: 'homev1.html'
 })
 export class Homev1Page {
-  @ViewChild('slider') slider: Slides;
 
   pages:any[];
 
@@ -41,8 +40,5 @@ export class Homev1Page {
       .push(page);
   }
 
-  ngAfterViewInit() {
-    this.slider.freeMode = true;
-  }
 
 }

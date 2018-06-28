@@ -9,7 +9,6 @@ export class TabsPage {
 
   tab1: string = "Homev1Page";
   tab2: string = "IvpayPage";
-  tab4: string = "DiscussionsPage";
 
   constructor() {
   }

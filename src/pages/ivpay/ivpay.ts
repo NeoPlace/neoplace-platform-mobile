@@ -1,7 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, Slides} from 'ionic-angular';
-import {WalletService} from "../../providers/wallet.service";
-import {UserService} from "../../providers/user.service";
 import {CryptocompareService} from "../../providers/cryptocompare.service";
 
 @IonicPage()
@@ -14,6 +12,8 @@ export class IvpayPage {
 
   slides;
 
+  public  trigramAvailable = ['ETH', 'BTC', 'NEO', 'GAS'];
+
   pages2:any[] = [
     { icon: 'qr-scanner', title: 'Scan', page: 'ScanPage', active: true, },
     { icon: 'barcode', title: 'Pay', page: 'PayPage', active: false, },
@@ -25,36 +25,20 @@ export class IvpayPage {
 
   constructor( public navCtrl: NavController,
                private alertCtrl: AlertController,
-               private walletService: WalletService,
                private cryptoCompareService: CryptocompareService,
-               private userService: UserService,
                public loadingCtrl: LoadingController) {
     this.slides = [];
-    for(let crypto of this.walletService.trigramAvailable) {
+    for(let crypto of this.trigramAvailable) {
       this.cryptoCompareService.getRateCrypto(crypto)
         .subscribe(data => {
           this.slides.push({
             title: crypto.toUpperCase(),
             img: "assets/img/" + crypto.toLowerCase() + "-avatar.png",
-            currency: this.userService._profil.currency,
-            rate: data[this.userService._profil.currency]
+            currency: 'USD',
+            rate: data['USD']
           });
         });
     }
-  }
-
-  ionViewDidLoad() {
-    this.zoom = 3;
-    // initial center position for the map
-    this.lat = 0;
-    this.lng = 0;
-
-    //this.loadMap();
-    //this.loadFiatPosition();
-  }
-
-  ionViewWillLeave() {
-    this.alive = false;
   }
 
   showList(pages) {
@@ -64,7 +48,7 @@ export class IvpayPage {
       });
       alert.setTitle('Choose your wallet');
 
-      for (let trigram of this.walletService.trigramAvailable) {
+      for (let trigram of this.trigramAvailable) {
         alert.addInput({
           type: 'radio',
           label: trigram.toUpperCase(),
@@ -90,14 +74,14 @@ export class IvpayPage {
 
       alert.addInput({
         type: 'radio',
-        label: 'Get ' + this.userService._profil.currency + ' with ' + this.userService._profil.paymentMethod,
+        label: 'Get ' + 'USD' + ' with ' + 'ETH',
         value: 'fiat',
         checked: true
       });
 
       alert.addInput({
         type: 'radio',
-        label: 'Get ' + this.userService._profil.paymentMethod + ' with ' + this.userService._profil.currency,
+        label: 'Get ' + 'ETH' + ' with ' + 'USD',
         value: 'crypto',
         checked: false
       });
@@ -107,9 +91,9 @@ export class IvpayPage {
         text: 'Ok',
         handler: data => {
           if(data == 'crypto') {
-            this.navCtrl.push(pages.page, {trigram: this.userService._profil.paymentMethod.toLowerCase(), request: true});
+            this.navCtrl.push(pages.page, {trigram: 'ETH'.toLowerCase(), request: true});
           } else {
-            this.navCtrl.push(pages.page, {trigram: this.userService._profil.paymentMethod.toLowerCase()});
+            this.navCtrl.push(pages.page, {trigram: 'ETH'.toLowerCase()});
           }
 
         }

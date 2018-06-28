@@ -1,17 +1,13 @@
-import { IvpayPage } from './ivpay';
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import {AgmCoreModule} from "@agm/core";
+import {IvpayPage} from './ivpay';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
 
 @NgModule({
   declarations: [
     IvpayPage,
   ],
   imports: [
-    IonicPageModule.forChild(IvpayPage),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBWc6kOtjHwnrL3bTJWG5YklwyB8SxFm8A'
-    })
+    IonicPageModule.forChild(IvpayPage)
   ],
   exports: [
     IvpayPage

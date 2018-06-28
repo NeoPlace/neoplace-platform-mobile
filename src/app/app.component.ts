@@ -6,7 +6,6 @@ import {Push} from '@ionic-native/push';
 import {AppState, PAGES} from './global.setting';
 import {Subject} from 'rxjs';
 import {Profil} from "../providers/model/profil";
-import {UserService} from "../providers/user.service";
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +13,7 @@ import {UserService} from "../providers/user.service";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = 'LoginPage';
+  rootPage:any = 'TabsPage';
   pages:any[];
   activePage = new Subject();
 
@@ -28,8 +27,7 @@ export class MyApp {
     public push: Push,
     public global: AppState,
     public alertCtrl: AlertController,
-    public menuCtrl: MenuController,
-    private userService: UserService) {
+    public menuCtrl: MenuController) {
     this.initializeApp();
 
     //Main Menu
@@ -65,7 +63,6 @@ export class MyApp {
       || pages.page == "InventoryPage" || pages.page == "MySalesPage") {
       this.nav.push(pages.page);
     } else if(pages.page == "LoginPage") {
-      this.userService.logout();
       this.nav.setRoot(pages.page);
     } else {
       this.nav.setRoot(pages.page);

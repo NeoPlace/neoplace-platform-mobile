@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> NeoPlace </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="bottom-slide" *ngIf="slides.length >= 4">
+    <ion-slides #slider spaceBetween="10" slidesPerView="2" autoplay="500" loop="true" speed="5000">
+      <ion-slide *ngFor="let slide of slides">
+        <ion-card>
+          <ion-card-header>
+            <img [src]="slide.img">
+            {{slide.title}}
+          </ion-card-header>
+          <ion-card-content>
+            <h3>{{slide.title}}/{{slide.currency}}</h3>
+            <h3>{{slide.currency == 'USD' ? ' &#36;' : '&euro;'}} {{slide.rate}}</h3>
+
+          </ion-card-content>
+        </ion-card>
+        <h2>{{slide.title}}</h2>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of pages2; let i = index" col-4 col-sm-4 col-md-6 col-lg-4 col-xl-2 text-center>
+        <button (click)="showList(item)" *ngIf="i < 6">
+          <ion-icon color="primary" name="{{ item.icon }}"></ion-icon> <br> {{ item.title }}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+

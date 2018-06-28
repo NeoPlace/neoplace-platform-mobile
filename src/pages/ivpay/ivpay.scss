@@ -1,0 +1,56 @@
+.theme-dark page-ivpay{
+    ion-grid button{
+        background: transparent;
+        color: #fff;
+    }
+}
+page-ivpay {
+
+    .col:nth-child(3n){
+      border-right: none;
+    }
+    ion-icon{
+      font-size: 30px;
+      padding-bottom: 10px;
+    }
+    button{
+      background: #fff;
+      height: 110px;
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    ion-slides{
+        height: 180px;
+    }
+    .slide-item{
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: block;
+        height: 180px;
+    }
+
+    agm-map {
+      height: 68%;
+    }
+
+  h2 {
+    color: white;
+  }
+
+  .bottom-slide ion-slides,
+  .swiper-container {
+
+    height: 200px;
+    margin: 20px auto;
+  }
+  .swiper-slide {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  .swiper-pagination-bullet {
+    background-color: white;
+  }
+}
+
